@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Login & Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model E_ComerCore.Models.Account
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>New User Signup!</h2>
+                    @if (ViewBag.error != null)
+                    {
+                        <p class="text-danger">@ViewBag.error</p>
+                    }
+                        <form asp-controller="Account" asp-action="register" method="post">
+                            <input type="text" id="FullName" asp-for="FullName" placeholder="Full Name" required />
+                            <input type="text" id="Username" asp-for="Username" placeholder="Username" required />
+                            <input type="email" id="Email" asp-for="Email" placeholder="Email Address" required />
+                            <input type="text" id="address" asp-for="Address" placeholder="Your Address" required />
+                            <input type="number" id="phone" asp-for="Phone" placeholder="Your Phone NUmber" required />
+                            <input type="password" id="password" asp-for="Password" placeholder="Password" required />
+                            <button type="submit" class="btn btn-default">Signup</button>
+                        </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>

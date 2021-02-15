@@ -1,0 +1,34 @@
+﻿
+<!--category-productsr-->
+@foreach (var category in Model)
+{
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordian" href="#@category.Name">
+                <span class="badge pull-right">  @if (category.InverseParent != null && category.InverseParent.Count > 0)
+                { <i class="fa fa-plus"></i> }</span>
+                @category.Name
+            </a>
+        </h4>
+    </div>
+    @if (category.InverseParent != null && category.InverseParent.Count > 0)
+    {
+    <div id="@category.Name" class="panel-collapse collapse">
+        <div class="panel-body">
+            <ul>
+                @foreach (var subCategory in category.InverseParent)
+                 {
+                    @if (subCategory.Status)
+                    {
+                    <li><a asp-controller="product" asp-action="category"  asp-route-id="@subCategory.Id" >@subCategory.Name</a></li>
+                    }
+                 }
+            </ul>
+        </div>
+    </div>
+
+    }
+</div>
+}
+<!--/category-products-->

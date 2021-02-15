@@ -1,0 +1,19 @@
+﻿@using E_ComerCore.Models;
+@{
+    ViewData["Title"] = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="cart_items">
+    <div class="container-fluid">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a asp-controller="home" asp-action="index">Home</a></li>
+                <li class="active">Thanks</li>
+            </ol>
+        </div>
+    </div>
+    <h3>Thank You, your order has ben successful</h3>
+    <a asp-controller="home" asp-action="index" class="btn btn-default update">Continue Shopping</a>
+</section><!--/#do_action-->

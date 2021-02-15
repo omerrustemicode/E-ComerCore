@@ -1,0 +1,124 @@
+﻿@using E_ComerCore.Models;
+@{
+    ViewData["Title"] = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-9 padding-right">
+    <div class="product-details">
+        <!--product-details-->
+        <div class="col-sm-5">
+            <div class="view-product">
+                <img src="~/products/@ViewBag.FeaturedPhoto" alt="" />
+            </div>
+            <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        @foreach (var productImages in ViewBag.ProductImages)
+                        {
+                            <a href=""><img src="~/products/@productImages.Name" width="90" height="110"></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="product-information">
+                <!--/product-information-->
+                <img src="~/eshop/images/product-details/new.jpg" class="newarrival" alt="" />
+                <h2>@ViewBag.Product.Name</h2>
+                <p>Web ID: @ViewBag.Product.Id</p>
+
+                @if (ViewBag.Product.Quantity > 0)
+                {
+
+                    <span>US $@ViewBag.Product.Price</span><br />
+                    <form asp-controller="cart" asp-action="buy" method="post">
+                        <input class="cart_quantity_input" type="number" name="quantity" min="1" max="100" value="1" autocomplete="off" size="2" />
+                        <input type="hidden" name="id" value="@ViewBag.Product.Id" />
+
+
+                        <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+
+                        <p>Stock: @ViewBag.Product.Quantity</p>
+
+                    </form>
+                }
+                else
+                {
+                    <p><b>Not Available</b></p>
+                }
+
+
+                <h2><b>Description</b></h2>
+                <br />
+                <p>@ViewBag.Product.Description</p>
+            </div><!--/product-information-->
+        </div>
+    </div><!--/product-details-->
+
+    <div class="category-tab shop-details-tab">
+        <!--category-tab-->
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#details" data-toggle="tab">Details </a></li>
+
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="details">
+                <div class="col-sm-12">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+
+                                <p>@ViewBag.Product.Details</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="recommended_items">
+        <!--recommended_items-->
+        <h2 class="title text-center">recommended items</h2>
+
+        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var product in ViewBag.ReleatedProducts)
+                {
+                    Product productInfo = (Product)product;
+                    Photo photo = productInfo.Photos.SingleOrDefault(ph => ph.Status && ph.Featured);
+                    var photoName = photo == null ? "noimage.gif" : photo.Name;
+                    <div class="item active">
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="~/products/@photoName" alt="" />
+                                        <h2>$@productInfo.Price</h2>
+                                        <p>@productInfo.Name</p>
+                                        <a asp-controller="product" asp-action="details" asp-route-id="@productInfo.Id" class="btn btn-default add-to-cart">Details</a>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            
+            </div>
+        </div><!--/recommended_items-->
+
+    </div>
+</div>
+
+

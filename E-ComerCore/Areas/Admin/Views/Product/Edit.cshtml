@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model E_ComerCore.Areas.Admin.Models.ViewModels.ProductView
+
+<div class="content-wrapper pl-3">
+    <section class="content-header">
+        <h1>
+            Add New Product
+
+        </h1>
+
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Product Information</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form method="post" role="form" asp-area="admin" asp-controller="product" asp-action="edit" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" asp-for="Product.Name" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" asp-for="Product.Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Details</label>
+                                <textarea class="form-control" rows="3" asp-for="Product.Details"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Price</label>
+                                <input type="number" min="0" class="form-control" asp-for="Product.Price" placeholder="Enter Price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Quantity</label>
+                                <input type="number" min="0" class="form-control" asp-for="Product.Quantity" placeholder="Enter Price" required>
+                            </div>
+                            @*<div class="form-group">
+            <label for="name">Photo</label>
+            <input type="file" class="form-control" name="photo">
+        </div>*@
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" asp-for="Product.Status"> Status
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" asp-for="Product.Featured"> Featured
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select asp-for="Product.CategoryId" asp-items="@Model.Category" class="form-control"></select>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <input type="hidden" asp-for="Product.Id" />
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    </div>

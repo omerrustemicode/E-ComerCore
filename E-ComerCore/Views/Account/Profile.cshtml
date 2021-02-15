@@ -1,0 +1,32 @@
+﻿@using System.Security.Claims;
+@{
+    var user = User.FindFirst(ClaimTypes.Name);
+}
+@{
+    ViewData["Title"] = "Login & Register";
+    Layout = "~/Views/Shared/_userpanel.cshtml";
+}
+@model E_ComerCore.Models.Account
+
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="login-form">
+                    <!--sign up form-->
+                    <h2>My Profile Details</h2>
+                    <form asp-controller="Account" asp-action="profile" method="post">
+                        <input type="text" id="FullName" asp-for="FullName" placeholder="Full Name" required />
+                        <input type="text" id="Username" asp-for="Username" placeholder="Username" readonly />
+                        <input type="email" id="Email" asp-for="Email" placeholder="Email Address" required />
+                        <input type="text" name="Address" asp-for="Address" placeholder="Your Address" required />
+                        <input type="number" id="phone" asp-for="Phone" placeholder="Your Phone NUmber" required />
+                        <input type="password" id="password" asp-for="Password" placeholder="Password" />
+                        <button type="submit" class="btn btn-default">Save</button>
+                        <input type="hidden" asp-for="Id" />
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+

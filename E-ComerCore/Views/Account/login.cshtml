@@ -1,0 +1,46 @@
+﻿@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Login & Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = User.FindFirst(ClaimTypes.Name);
+}
+
+@if (user == null)
+{
+
+        <!--form-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="login-form mt-lg-3">
+                        <!--login form-->
+                        <h2>Login to your account</h2>
+                        @if (ViewBag.error != null)
+                        {
+                            <p class="text-danger">@ViewBag.error</p>
+                        }
+                        <form asp-controller="Account" asp-action="process" class="user" method="post">
+                            <div class="form-group">
+                                <input type="text" required class="form-control form-control-user"
+                                       placeholder="Enter Username..." name="username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" required class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                Login
+                            </button>
+                            <hr>
+                        </form>
+                    </div><!--/sign up form-->
+                </div>
+            </div>
+        </div>
+
+}
+else
+{
+    <h1>Hello @user.Value Please go to <a asp-controller="account" asp-action="dashboard">Dashboard</a></h1>
+}
+

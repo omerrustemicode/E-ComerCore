@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model E_ComerCore.Models.Account
+
+<div class="container-fluid">
+    <div class="col-lg-7">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">My Profile</h1>
+            </div>
+            <form asp-area="admin" asp-controller="login" asp-action="profile" class="user" role="form">
+                <div class="form-group">
+
+                    <input type="text" class="form-control form-control-user" id="fullName" placeholder="Full Name" required asp-for="FullName">
+
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" required asp-for="Username">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control form-control-user" id="email" placeholder="Email .." required asp-for="Email">
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="password" class="form-control form-control-user" id="password" placeholder="Password" asp-for="Password">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" >
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Update Account
+                </button>
+                <input type="hidden" asp-for="Id" />
+                <hr>
+                @ViewBag.msg
+            </form>
+            <hr>
+     
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+﻿<!--category-productsr-->
+@foreach (var product in Model)
+{
+    Product productInfo = (Product)product;
+    Photo photo = productInfo.Photos.SingleOrDefault(ph => ph.Status && ph.Featured);
+    var photoName = photo == null ? "noimage.gif" : photo.Name;
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+            </h4>
+        </div>
+    </div>
+}
+<!--/category-products-->
