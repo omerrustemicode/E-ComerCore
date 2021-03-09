@@ -35,16 +35,17 @@
                 {
 
                     <span>US $@ViewBag.Product.Price</span><br />
-                    <form asp-controller="cart" asp-action="buy" method="post">
+                    <form asp-controller="cart" asp-action="buy" asp-route-id="@ViewBag.Product.Id"  method="post">
                         <input class="cart_quantity_input" type="number" name="quantity" min="1" max="100" value="1" autocomplete="off" size="2" />
                         <input type="hidden" name="id" value="@ViewBag.Product.Id" />
 
 
                         <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 
-                        <p>Stock: @ViewBag.Product.Quantity</p>
+          
 
                     </form>
+                                  <p>Stock: @ViewBag.Product.Quantity</p>
                 }
                 else
                 {

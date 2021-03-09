@@ -57,7 +57,10 @@
                                     var photo = pr.Photos.SingleOrDefault(p => p.Featured == true);
                                 <tr>
                                     <td>@product.Id</td>
-                                    <td> @product.Name </td>
+                             
+
+                                    <td> @(product.Name = product.Name.Length > 50 ? @product.Name = @product.Name.Substring(0, 50) + "..." : @product.Name ) </td>
+                                    
                                     <td> <img src="~/products/@photo.Name" width="120" /></td>
                                     <td>@product.Price </td>
                                     <td>@(product.Status ? "Show" : "Hide")</td>
